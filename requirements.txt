@@ -1,0 +1,5 @@
+# Requirements for ResearchMate Multi-Paper Analyzer backend
+Flask==3.0.3
+Flask-CORS==4.0.1
+pymupdf==1.24.4
+python-dotenv==1.0.1

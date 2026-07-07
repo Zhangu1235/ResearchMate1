@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script>
+      // Catch and suppress benign Vite WebSocket HMR connection errors
+      window.addEventListener('error', (event) => {
+        if (event.message && (
+          event.message.includes('WebSocket') || 
+          event.message.includes('vite') ||
+          event.message.includes('failed to connect')
+        )) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+
+      window.addEventListener('unhandledrejection', (event) => {
+        const reason = event.reason;
+        if (reason && (
+          reason.message === 'WebSocket closed without opened.' ||
+          (reason.message && reason.message.includes('WebSocket')) ||
+          (typeof reason === 'string' && reason.includes('WebSocket'))
+        )) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

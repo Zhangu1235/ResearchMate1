@@ -1,0 +1,6 @@
+{
+  "name": "ResearchMate - Multi-Paper Analyzer",
+  "description": "Upload multiple research paper PDFs and use AI to summarize, compare, extract key findings, methodologies, and conclusions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
