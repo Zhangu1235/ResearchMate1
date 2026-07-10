@@ -1,88 +1,71 @@
-import { Upload, GitCompare, Search } from "lucide-react";
+import {
+  BookOpen,
+  Search,
+  BrainCircuit,
+  Sparkles,
+  ArrowRight,
+} from "lucide-react";
+
+const actions = [
+  {
+    title: "Summarize",
+    description: "Generate concise AI summaries from research papers.",
+    icon: BookOpen,
+    color: "#F5F3FF",
+    iconColor: "#6D28D9",
+  },
+  {
+    title: "Compare",
+    description: "Compare methodologies, datasets and findings.",
+    icon: Search,
+    color: "#EFF6FF",
+    iconColor: "#2563EB",
+  },
+  {
+    title: "Research Gaps",
+    description: "Identify unexplored opportunities instantly.",
+    icon: BrainCircuit,
+    color: "#ECFDF5",
+    iconColor: "#059669",
+  },
+  {
+    title: "Ask AI",
+    description: "Chat naturally with your uploaded papers.",
+    icon: Sparkles,
+    color: "#FFF7ED",
+    iconColor: "#EA580C",
+  },
+];
 
 export default function QuickActions() {
   return (
-    <section
-      style={{
-        padding: "0 50px 50px",
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3,1fr)",
-          gap: "25px",
-        }}
-      >
-        <ActionCard
-          icon={<Upload size={30} />}
-          title="Upload Papers"
-          text="Upload one or more research papers."
-        />
+    <section className="quickActions">
+      {actions.map((action) => {
+        const Icon = action.icon;
 
-        <ActionCard
-          icon={<GitCompare size={30} />}
-          title="Compare Papers"
-          text="Compare methods and datasets."
-        />
+        return (
+          <div className="actionCard" key={action.title}>
+            <div
+              className="actionIcon"
+              style={{
+                background: action.color,
+                color: action.iconColor,
+              }}
+            >
+              <Icon size={26} />
+            </div>
 
-        <ActionCard
-          icon={<Search size={30} />}
-          title="Ask ResearchMate"
-          text="Ask questions across all uploaded papers."
-        />
-      </div>
+            <h3>{action.title}</h3>
+
+            <p>{action.description}</p>
+
+            <button className="actionButton">
+              Open
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        );
+      })}
     </section>
-  );
-}
-
-function ActionCard({
-  icon,
-  title,
-  text,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  text: string;
-}) {
-  return (
-    <div
-      style={{
-        background: "white",
-        borderRadius: "20px",
-        padding: "30px",
-        border: "1px solid #E5E7EB",
-        boxShadow: "0 8px 20px rgba(0,0,0,.05)",
-        cursor: "pointer",
-        transition: ".25s",
-      }}
-    >
-      <div
-        style={{
-          color: "#4F46E5",
-          marginBottom: "18px",
-        }}
-      >
-        {icon}
-      </div>
-
-      <h3
-        style={{
-          marginBottom: "10px",
-          color: "#111827",
-        }}
-      >
-        {title}
-      </h3>
-
-      <p
-        style={{
-          color: "#6B7280",
-          lineHeight: 1.7,
-        }}
-      >
-        {text}
-      </p>
-    </div>
   );
 }

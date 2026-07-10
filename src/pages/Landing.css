@@ -1,0 +1,636 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow: hidden;
+  background: #f8fafc;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.landing {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 48px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #f8fafc;
+  color: #0f172a;
+  isolation: isolate;
+}
+
+.landingGradient {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  background:
+    linear-gradient(120deg, rgba(168, 85, 247, 0.2), rgba(255, 255, 255, 0.9) 34%, rgba(239, 246, 255, 0.95) 64%, rgba(147, 197, 253, 0.22)),
+    radial-gradient(circle at 10% 8%, rgba(147, 51, 234, 0.26), transparent 30%),
+    radial-gradient(circle at 88% 88%, rgba(96, 165, 250, 0.48), transparent 34%),
+    #f8fafc;
+  background-size: 180% 180%, 100% 100%, 100% 100%, auto;
+  animation: gradientDrift 16s ease-in-out infinite alternate;
+}
+
+.auroraField {
+  position: absolute;
+  inset: -20%;
+  z-index: -3;
+  background:
+    radial-gradient(ellipse at 22% 28%, rgba(167, 139, 250, 0.2), transparent 34%),
+    radial-gradient(ellipse at 80% 68%, rgba(56, 189, 248, 0.2), transparent 36%),
+    conic-gradient(from 130deg at 50% 50%, transparent, rgba(124, 58, 237, 0.08), transparent, rgba(59, 130, 246, 0.08), transparent);
+  filter: blur(34px);
+  opacity: 0.9;
+  animation: auroraSpin 24s linear infinite;
+  pointer-events: none;
+}
+
+.landingGlow {
+  position: absolute;
+  z-index: -3;
+  border-radius: 999px;
+  filter: blur(64px);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.landingGlowTop {
+  width: 380px;
+  height: 380px;
+  top: -150px;
+  left: -90px;
+  background: rgba(168, 85, 247, 0.28);
+  animation: glowFloatTop 14s ease-in-out infinite alternate;
+}
+
+.landingGlowBottom {
+  width: 460px;
+  height: 460px;
+  right: -120px;
+  bottom: -190px;
+  background: rgba(96, 165, 250, 0.5);
+  animation: glowFloatBottom 16s ease-in-out infinite alternate;
+}
+
+.sparkleLayer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.42);
+  box-shadow:
+    0 0 0 5px rgba(124, 58, 237, 0.05),
+    0 0 22px rgba(79, 70, 229, 0.42);
+  animation: sparkleFloat 9s ease-in-out infinite;
+}
+
+.sparkleOne {
+  top: 24%;
+  left: 28%;
+}
+
+.sparkleTwo {
+  top: 22%;
+  right: 28%;
+  animation-delay: -2s;
+}
+
+.sparkleThree {
+  bottom: 28%;
+  left: 31%;
+  animation-delay: -4s;
+}
+
+.sparkleFour {
+  bottom: 34%;
+  right: 29%;
+  animation-delay: -6s;
+}
+
+.sparkleFive {
+  top: 52%;
+  left: 50%;
+  background: rgba(59, 130, 246, 0.36);
+  animation-delay: -1s;
+}
+
+.researchGraph {
+  position: absolute;
+  inset: 8% 7%;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.graphNode {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a78bfa, #4f46e5);
+  box-shadow:
+    0 0 0 5px rgba(124, 58, 237, 0.08),
+    0 8px 18px rgba(79, 70, 229, 0.18);
+  animation: nodePulse 4.6s ease-in-out infinite;
+}
+
+.graphLine {
+  position: absolute;
+  height: 1px;
+  border-top: 1px dashed rgba(100, 116, 139, 0.22);
+  transform-origin: left center;
+  animation: linePulse 6s ease-in-out infinite;
+}
+
+.nodeOne {
+  top: 12%;
+  left: 16%;
+}
+
+.nodeTwo {
+  top: 10%;
+  left: 48%;
+  animation-delay: -1.4s;
+}
+
+.nodeThree {
+  top: 16%;
+  right: 18%;
+  animation-delay: -2.8s;
+}
+
+.nodeFour {
+  top: 42%;
+  left: 8%;
+  animation-delay: -0.8s;
+}
+
+.nodeFive {
+  top: 45%;
+  right: 8%;
+  animation-delay: -2.1s;
+}
+
+.nodeSix {
+  bottom: 16%;
+  left: 12%;
+  animation-delay: -3.2s;
+}
+
+.nodeSeven {
+  bottom: 10%;
+  left: 47%;
+  animation-delay: -1.8s;
+}
+
+.nodeEight {
+  bottom: 19%;
+  right: 13%;
+  animation-delay: -0.4s;
+}
+
+.lineOne {
+  width: 30%;
+  top: 13%;
+  left: 17%;
+  transform: rotate(13deg);
+}
+
+.lineTwo {
+  width: 31%;
+  top: 12%;
+  left: 49%;
+  transform: rotate(7deg);
+  animation-delay: -1s;
+}
+
+.lineThree {
+  width: 22%;
+  top: 25%;
+  left: 9%;
+  transform: rotate(-18deg);
+  animation-delay: -2s;
+}
+
+.lineFour {
+  width: 31%;
+  top: 36%;
+  left: 10%;
+  transform: rotate(33deg);
+  animation-delay: -3s;
+}
+
+.lineFive {
+  width: 28%;
+  top: 39%;
+  right: 10%;
+  transform: rotate(-24deg);
+  animation-delay: -1.8s;
+}
+
+.lineSix {
+  width: 27%;
+  bottom: 25%;
+  left: 13%;
+  transform: rotate(-18deg);
+  animation-delay: -2.7s;
+}
+
+.lineSeven {
+  width: 30%;
+  bottom: 15%;
+  left: 47%;
+  transform: rotate(-11deg);
+  animation-delay: -3.4s;
+}
+
+.lineEight {
+  width: 20%;
+  top: 20%;
+  right: 8%;
+  transform: rotate(58deg);
+  animation-delay: -0.6s;
+}
+
+.glassCard {
+  position: relative;
+  width: min(100%, 720px);
+  padding: 66px 70px 54px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.46);
+  box-shadow:
+    0 34px 90px rgba(79, 70, 229, 0.12),
+    0 18px 50px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(26px);
+  text-align: center;
+  overflow: hidden;
+  animation:
+    cardAppear 700ms ease both,
+    cardFloat 7s ease-in-out 750ms infinite;
+}
+
+.glassCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 16% 82%, rgba(139, 92, 246, 0.11), transparent 20%),
+    radial-gradient(circle at 86% 28%, rgba(96, 165, 250, 0.12), transparent 24%);
+  pointer-events: none;
+  animation: cardGlowShift 10s ease-in-out infinite alternate;
+}
+
+.glassCard::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -70%;
+  width: 52%;
+  height: 180%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  transform: rotate(18deg);
+  animation: glassShine 7s ease-in-out 1s infinite;
+  pointer-events: none;
+}
+
+.badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 34px;
+  padding: 10px 28px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.09);
+  color: #6d28d9;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  animation: badgeBreath 4s ease-in-out infinite;
+}
+
+.glassCard h1 {
+  position: relative;
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(58px, 7vw, 82px);
+  font-weight: 850;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.glassCard h1 span {
+  background: linear-gradient(120deg, #7c3aed 8%, #4f46e5 36%, #8b5cf6 62%, #38bdf8 92%);
+  background-size: 180% 180%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: titleGradient 6s ease-in-out infinite alternate;
+}
+
+.glassCard p {
+  position: relative;
+  max-width: 610px;
+  margin: 30px auto 0;
+  color: #475569;
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+.enterButton {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  margin: 38px auto 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #4f46e5 72%, #4338ca);
+  color: #ffffff;
+  box-shadow:
+    0 18px 36px rgba(79, 70, 229, 0.3),
+    0 0 0 18px rgba(255, 255, 255, 0.42),
+    inset 0 1px 1px rgba(255, 255, 255, 0.32);
+  cursor: pointer;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  animation: buttonPulse 3.8s ease-in-out infinite;
+}
+
+.enterButton:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 24px 44px rgba(79, 70, 229, 0.36),
+    0 0 0 20px rgba(255, 255, 255, 0.48),
+    inset 0 1px 1px rgba(255, 255, 255, 0.34);
+}
+
+.enterButton:focus-visible {
+  outline: 3px solid rgba(79, 70, 229, 0.28);
+  outline-offset: 8px;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gradientDrift {
+  from {
+    background-position: 0% 45%, center, center, center;
+  }
+
+  to {
+    background-position: 100% 55%, center, center, center;
+  }
+}
+
+@keyframes auroraSpin {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: rotate(360deg) scale(1.04);
+  }
+}
+
+@keyframes glowFloatTop {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(90px, 52px) scale(1.12);
+  }
+}
+
+@keyframes glowFloatBottom {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(-80px, -56px) scale(1.08);
+  }
+}
+
+@keyframes sparkleFloat {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translate3d(0, 0, 0) scale(0.8);
+  }
+
+  45% {
+    opacity: 0.9;
+    transform: translate3d(18px, -24px, 0) scale(1.15);
+  }
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.12);
+  }
+}
+
+@keyframes linePulse {
+  0%,
+  100% {
+    opacity: 0.32;
+    filter: blur(0);
+  }
+
+  50% {
+    opacity: 0.86;
+    filter: blur(0.15px);
+  }
+}
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes cardGlowShift {
+  from {
+    opacity: 0.75;
+    transform: translateX(-1.5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(1.5%);
+  }
+}
+
+@keyframes glassShine {
+  0% {
+    left: -72%;
+    opacity: 0;
+  }
+
+  28% {
+    opacity: 0.9;
+  }
+
+  56%,
+  100% {
+    left: 122%;
+    opacity: 0;
+  }
+}
+
+@keyframes badgeBreath {
+  0%,
+  100% {
+    transform: translateY(0);
+    background-color: rgba(124, 58, 237, 0.09);
+  }
+
+  50% {
+    transform: translateY(-2px);
+    background-color: rgba(124, 58, 237, 0.13);
+  }
+}
+
+@keyframes titleGradient {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes buttonPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 18px 36px rgba(79, 70, 229, 0.3),
+      0 0 0 18px rgba(255, 255, 255, 0.42),
+      inset 0 1px 1px rgba(255, 255, 255, 0.32);
+  }
+
+  50% {
+    box-shadow:
+      0 22px 42px rgba(79, 70, 229, 0.36),
+      0 0 0 23px rgba(255, 255, 255, 0.26),
+      inset 0 1px 1px rgba(255, 255, 255, 0.34);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .landing {
+    padding: 36px 18px;
+  }
+
+  .researchGraph {
+    inset: 6% -18%;
+    opacity: 0.78;
+  }
+
+  .glassCard {
+    padding: 52px 34px 44px;
+    border-radius: 28px;
+  }
+
+  .badge {
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+
+  .glassCard p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .landing {
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .researchGraph {
+    inset: 4% -46%;
+  }
+
+  .graphNode {
+    width: 11px;
+    height: 11px;
+  }
+
+  .glassCard {
+    padding: 42px 22px 38px;
+    border-radius: 24px;
+  }
+
+  .glassCard h1 {
+    font-size: clamp(44px, 15vw, 58px);
+  }
+
+  .glassCard p {
+    margin-top: 24px;
+    font-size: 16px;
+  }
+
+  .enterButton {
+    width: 70px;
+    height: 70px;
+    margin-top: 34px;
+  }
+}
