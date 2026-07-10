@@ -1,7 +1,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
 // Initialize Gemini SDK with telemetry header as instructed
-const apiKey = process.env.GEMINI_API_KEY;
+// Prefer Vite-managed env (`VITE_GEMINI_API_KEY`) for frontend builds, fallback to process.env for server-side contexts
+const apiKey = (typeof window !== 'undefined' && (import.meta as any).env?.VITE_GEMINI_API_KEY) || process.env.GEMINI_API_KEY;
 
 export const ai = new GoogleGenAI({
   apiKey: apiKey,
