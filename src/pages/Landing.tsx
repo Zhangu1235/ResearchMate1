@@ -1,87 +1,67 @@
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import "./Landing.css";
 
-interface LandingProps {
-  next: () => void;
-}
+export default function Landing() {
+  const navigate = useNavigate();
 
-export default function Landing({ next }: LandingProps) {
   return (
-    <div
-      style={{
-        height: "100vh",
-        background: "#FAFBFF",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: "Inter, sans-serif",
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "88px",
-          fontWeight: 800,
-          margin: 0,
-          color: "#101828",
-        }}
-      >
-        Research
-        <span
-          style={{
-            background:
-              "linear-gradient(135deg,#4F46E5,#8B5CF6)",
-            WebkitBackgroundClip: "text",
-            color: "transparent",
-          }}
+    <div className="landing">
+      <div className="landingGradient" aria-hidden="true" />
+      <div className="landingGlow landingGlowTop" aria-hidden="true" />
+      <div className="landingGlow landingGlowBottom" aria-hidden="true" />
+      <div className="auroraField" aria-hidden="true" />
+
+      <div className="sparkleLayer" aria-hidden="true">
+        <span className="spark sparkleOne" />
+        <span className="spark sparkleTwo" />
+        <span className="spark sparkleThree" />
+        <span className="spark sparkleFour" />
+        <span className="spark sparkleFive" />
+      </div>
+
+      <div className="researchGraph" aria-hidden="true">
+        <span className="graphLine lineOne" />
+        <span className="graphLine lineTwo" />
+        <span className="graphLine lineThree" />
+        <span className="graphLine lineFour" />
+        <span className="graphLine lineFive" />
+        <span className="graphLine lineSix" />
+        <span className="graphLine lineSeven" />
+        <span className="graphLine lineEight" />
+
+        <span className="graphNode nodeOne" />
+        <span className="graphNode nodeTwo" />
+        <span className="graphNode nodeThree" />
+        <span className="graphNode nodeFour" />
+        <span className="graphNode nodeFive" />
+        <span className="graphNode nodeSix" />
+        <span className="graphNode nodeSeven" />
+        <span className="graphNode nodeEight" />
+      </div>
+
+      <div className="glassCard">
+        <div className="badge">AI Research Workspace</div>
+
+        <h1>
+          Research<span>Mate</span>
+        </h1>
+
+        <p>
+          Compare research papers, generate intelligent summaries,
+          discover research gaps and chat with your papers,
+          all inside one beautifully designed workspace.
+        </p>
+
+        <button
+          className="enterButton"
+          onClick={() => navigate("/login")}
+          type="button"
+          aria-label="Enter ResearchMate"
         >
-          Mate
-        </span>
-      </h1>
-
-      <p
-        style={{
-          marginTop: "18px",
-          fontSize: "22px",
-          color: "#667085",
-        }}
-      >
-        Analyze. Compare. Discover.
-      </p>
-
-      <button
-        onClick={next}
-        style={{
-          marginTop: "70px",
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
-          background: "transparent",
-          border: "none",
-          cursor: "pointer",
-          fontSize: "18px",
-          color: "#4F46E5",
-          fontWeight: 600,
-        }}
-      >
-        Explore
-
-        <div
-          style={{
-            width: "55px",
-            height: "55px",
-            borderRadius: "50%",
-            background:
-              "linear-gradient(135deg,#4F46E5,#8B5CF6)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            color: "white",
-            boxShadow: "0 15px 35px rgba(79,70,229,.25)",
-          }}
-        >
-          <ArrowRight size={24} />
-        </div>
-      </button>
+          <ArrowRight size={30} />
+        </button>
+      </div>
     </div>
   );
 }

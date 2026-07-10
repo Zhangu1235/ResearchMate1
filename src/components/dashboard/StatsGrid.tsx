@@ -7,30 +7,30 @@ import {
 
 const stats = [
   {
+    icon: <FileText size={24} />,
     title: "Uploaded Papers",
     value: "0",
-    icon: FileText,
     color: "#EEF2FF",
     iconColor: "#4F46E5",
   },
   {
+    icon: <GitCompare size={24} />,
     title: "Comparisons",
     value: "0",
-    icon: GitCompare,
     color: "#EFF6FF",
     iconColor: "#2563EB",
   },
   {
+    icon: <MessageSquare size={24} />,
     title: "AI Chats",
     value: "0",
-    icon: MessageSquare,
     color: "#ECFDF5",
     iconColor: "#059669",
   },
   {
+    icon: <BrainCircuit size={24} />,
     title: "Research Gaps",
     value: "0",
-    icon: BrainCircuit,
     color: "#FFF7ED",
     iconColor: "#EA580C",
   },
@@ -39,28 +39,29 @@ const stats = [
 export default function StatsGrid() {
   return (
     <section className="statsGrid">
-      {stats.map((item) => {
-        const Icon = item.icon;
+      {stats.map((stat) => (
+        <div className="statCard" key={stat.title}>
 
-        return (
-          <article className="statCard" key={item.title}>
-            <div
-              className="statIcon"
-              style={{
-                background: item.color,
-                color: item.iconColor,
-              }}
-            >
-              <Icon size={24} />
-            </div>
+          <div
+            className="statIcon"
+            style={{
+              background: stat.color,
+              color: stat.iconColor,
+            }}
+          >
+            {stat.icon}
+          </div>
 
-            <div>
-              <h2>{item.value}</h2>
-              <p>{item.title}</p>
-            </div>
-          </article>
-        );
-      })}
+          <div>
+
+            <h3>{stat.value}</h3>
+
+            <p>{stat.title}</p>
+
+          </div>
+
+        </div>
+      ))}
     </section>
   );
 }
