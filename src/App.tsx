@@ -11,29 +11,33 @@ import Compare from "./pages/Compare";
 import Summary from "./pages/Summary";
 import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
+import SpaceParticles from "./components/layout/SpaceParticles";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
+    <>
+      <SpaceParticles />
+      <Routes>
+        <Route path="/" element={<Landing />} />
 
-      <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
-      <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
 
-      <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
-      <Route path="/papers" element={<MyPapers />} />
+        <Route path="/papers" element={<MyPapers />} />
 
-      <Route path="/upload" element={<Upload />} />
+        <Route path="/upload" element={<Upload />} />
 
-      <Route path="/compare" element={<Compare />} />
+        <Route path="/compare" element={<Compare />} />
 
-      <Route path="/summary" element={<Summary />} />
+        <Route path="/summary" element={<Summary />} />
 
-      <Route path="/chat" element={<Chat />} />
+        <Route path="/chat" element={<Chat />} />
 
-      <Route path="/profile" element={<Profile />} />
-    </Routes>
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </>
   );
 }

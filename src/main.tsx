@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
+import { PaperProvider } from "./context/PaperContext";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <PaperProvider>
+        <App />
+      </PaperProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

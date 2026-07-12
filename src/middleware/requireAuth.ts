@@ -3,6 +3,15 @@ import { supabaseServer } from "../supabaseServerClient";
 
 export async function requireAuth(req: Request, res: Response, next: NextFunction) {
   try {
+    const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || "";
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+
+    if (!supabaseUrl || !supabaseServiceKey) {
+      // Supabase is not configured locally; fallback to mock user for development
+      (req as any).user = { id: "mock-user-id", email: "mock@example.com" };
+      return next();
+    }
+
     const authHeader = req.headers.authorization || req.headers.Authorization;
     if (!authHeader) {
       return res.status(401).json({ success: false, message: "Missing Authorization header" });

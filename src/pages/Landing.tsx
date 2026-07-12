@@ -1,12 +1,31 @@
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import InteractiveGlobe from "../components/layout/InteractiveGlobe";
 import "./Landing.css";
 
 export default function Landing() {
   const navigate = useNavigate();
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left - box.width / 2;
+    const y = e.clientY - box.top - box.height / 2;
+    const rx = -(y / (box.height / 2)) * 8; // Max 8 degrees rotation for landing card
+    const ry = (x / (box.width / 2)) * 8;
+    card.style.setProperty("--rx", `${rx}deg`);
+    card.style.setProperty("--ry", `${ry}deg`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.setProperty("--rx", "0deg");
+    card.style.setProperty("--ry", "0deg");
+  };
+
   return (
     <div className="landing">
+      <InteractiveGlobe />
       <div className="landingGradient" aria-hidden="true" />
       <div className="landingGlow landingGlowTop" aria-hidden="true" />
       <div className="landingGlow landingGlowBottom" aria-hidden="true" />
@@ -40,7 +59,11 @@ export default function Landing() {
         <span className="graphNode nodeEight" />
       </div>
 
-      <div className="glassCard">
+      <div
+        className="glassCard"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="badge">AI Research Workspace</div>
 
         <h1>

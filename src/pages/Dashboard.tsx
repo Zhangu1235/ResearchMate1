@@ -11,6 +11,9 @@ import "../styles/dashboard.css";
 export default function Dashboard() {
   return (
     <div className="dashboardPage">
+      {/* Premium Fusion Glow Blobs */}
+      <div className="glowBg glowBg-1" />
+      <div className="glowBg glowBg-2" />
 
       <Sidebar />
 
@@ -18,7 +21,7 @@ export default function Dashboard() {
 
         <Topbar />
 
-        {/* <Hero /> */}
+        <Hero />
 
         <StatsGrid />
 

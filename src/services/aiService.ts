@@ -269,4 +269,57 @@ The returned JSON must have:
       throw new Error(`AI Comparison failed: ${error?.message || error}`);
     }
   },
+
+  /**
+   * Chat with an individual paper using Gemini
+   */
+  async chatWithPaper(
+    pdfText: string,
+    fileName: string,
+    message: string,
+    history: Array<{ role: "user" | "model"; text: string }>
+  ): Promise<string> {
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY environment variable is not set.");
+    }
+
+    const systemInstruction = `You are a helpful academic research assistant. 
+You are answering questions about the research paper titled "${fileName}". 
+Answer using the provided text of the paper. Keep your answers concise, accurate, and scientifically sound.`;
+
+    const contents: any[] = [];
+    
+    // Include history
+    history.forEach((h) => {
+      contents.push({
+        role: h.role,
+        parts: [{ text: h.text }],
+      });
+    });
+
+    // Provide the paper text context along with the active message
+    const paperContext = `[Extracted Text of Paper "${fileName}"]:
+${pdfText.substring(0, 100000)}
+[End of Extracted Text]`;
+
+    contents.push({
+      role: "user",
+      parts: [{ text: `${paperContext}\n\nQuestion: ${message}` }],
+    });
+
+    try {
+      const response = await ai.models.generateContent({
+        model: MODEL_NAME,
+        contents: contents,
+        config: {
+          systemInstruction,
+        },
+      });
+
+      return response.text || "I was unable to find an answer based on the paper context.";
+    } catch (error: any) {
+      console.error("Error in chatWithPaper:", error);
+      throw new Error(`AI Chat failed: ${error?.message || error}`);
+    }
+  },
 };

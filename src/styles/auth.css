@@ -474,3 +474,184 @@ body {
     gap: 12px;
   }
 }
+
+/* =====================================================
+   COSMIC & BOUJEE AUTH STYLING OVERRIDES (SELLIX-STYLE)
+   ===================================================== */
+
+.authPage {
+  background: radial-gradient(circle at 50% 50%, #0c081d 0%, #020005 100%) !important;
+  color: #f8fafc !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Starry Sky */
+.authPage::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 150px 180px, rgba(168, 85, 247, 0.4), transparent),
+    radial-gradient(2px 2px at 300px 320px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 450px 100px, rgba(236, 72, 153, 0.4), transparent),
+    radial-gradient(1px 1px at 600px 240px, #fff, transparent),
+    radial-gradient(2.5px 2.5px at 750px 480px, rgba(99, 102, 241, 0.4), transparent),
+    radial-gradient(1px 1px at 900px 120px, #fff, transparent) !important;
+  background-size: 1000px 1000px !important;
+  opacity: 0.55 !important;
+  pointer-events: none !important;
+  animation: bgPulse 20s infinite alternate ease-in-out !important;
+}
+
+@keyframes bgPulse {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(1.06); opacity: 0.6; }
+}
+
+/* Floating Glowing Cosmic Sphere */
+.authPage::after {
+  content: "";
+  position: absolute;
+  top: -150px;
+  left: -150px;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 30%, rgba(168, 85, 247, 0.22) 0%, rgba(236, 72, 153, 0.05) 50%, transparent 85%);
+  filter: blur(45px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatSphere 15s infinite alternate ease-in-out;
+}
+
+@keyframes floatSphere {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 40px) scale(1.08); }
+}
+
+/* 3D Glass Container */
+.authContainer {
+  background: rgba(13, 9, 30, 0.45) !important;
+  border: 1px solid rgba(168, 85, 247, 0.22) !important;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(168, 85, 247, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(30px) !important;
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease !important;
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0) !important;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+
+/* Left panel content styling */
+.authLeft {
+  background: transparent !important;
+  border-right: 1px solid rgba(168, 85, 247, 0.15) !important;
+}
+
+.leftContent h1 {
+  color: #ffffff !important;
+}
+
+.leftDescription {
+  color: #94a3b8 !important;
+}
+
+.featureCard {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #e2e8f0 !important;
+}
+
+.featureCard:hover {
+  border-color: rgba(168, 85, 247, 0.35) !important;
+  background: rgba(168, 85, 247, 0.06) !important;
+  color: #ffffff !important;
+}
+
+.featureIcon {
+  background: rgba(168, 85, 247, 0.15) !important;
+  color: #d8b4fe !important;
+}
+
+/* Right panel content styling */
+.authRight {
+  background: transparent !important;
+}
+
+.loginCard, .signupCard {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.loginCard h2, .signupCard h2 {
+  color: #ffffff !important;
+}
+
+.loginCard h2 span, .signupCard h2 span {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.loginSubtitle, .signupSubtitle {
+  color: #94a3b8 !important;
+}
+
+/* Inputs styling */
+.inputGroup label {
+  color: #e2e8f0 !important;
+}
+
+.inputGroup input {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  transition: all 0.25s ease !important;
+}
+
+.inputGroup input:focus {
+  border-color: #a855f7 !important;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.2) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  outline: none;
+}
+
+.inputGroup input::placeholder {
+  color: #64748b !important;
+}
+
+/* Primary buttons styling matching Sellix */
+.submitButton, .primaryAction {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.25) !important;
+  transition: all 0.25s ease !important;
+}
+
+.submitButton:hover, .primaryAction:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4) !important;
+}
+
+.authFooter, .authFooter a {
+  color: #94a3b8 !important;
+}
+
+.authFooter a:hover {
+  color: #d8b4fe !important;
+}
+
+.backButton {
+  color: #d8b4fe !important;
+}
+
+.backButton:hover {
+  color: #f472b6 !important;
+}
