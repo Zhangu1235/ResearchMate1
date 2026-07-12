@@ -16,6 +16,7 @@ import os
 from flask import Flask, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
+from pathlib import Path
 
 # Import routing blueprints
 from routes import api_blueprint
@@ -25,7 +26,13 @@ def create_app() -> Flask:
     Application factory pattern to initialize and configure the Flask app.
     """
     # Load environment variables from .env file
+    # Try default .env first (working dir), then try the nested ResearchMate1/.env
     load_dotenv()
+    if not os.getenv("GEMINI_API_KEY"):
+        nested = Path(__file__).resolve().parent / "ResearchMate1" / ".env"
+        if nested.exists():
+            load_dotenv(str(nested))
+            print(f"Loaded environment variables from {nested}")
 
     # Initialize Flask app
     app = Flask(__name__)

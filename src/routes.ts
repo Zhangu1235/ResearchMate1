@@ -3,6 +3,7 @@ import { pdfService } from "./services/pdfService.ts";
 import { aiService } from "./services/aiService.ts";
 import { arxivService } from "./services/arxivService.ts";
 import { UploadedPaper } from "./types.ts";
+import { requireAuth } from "./middleware/requireAuth";
 
 export const apiRouter = Router();
 
@@ -16,7 +17,7 @@ apiRouter.get("/health", (req: Request, res: Response) => {
 /**
  * POST /api/upload - Validates uploaded PDF and returns structure
  */
-apiRouter.post("/upload", async (req: Request, res: Response): Promise<void> => {
+apiRouter.post("/upload", requireAuth, async (req: Request, res: Response): Promise<void> => {
   try {
     const { base64, name, size, type } = req.body;
 
@@ -68,7 +69,7 @@ apiRouter.post("/upload", async (req: Request, res: Response): Promise<void> => 
 /**
  * POST /api/summarize - Summarize an individual paper
  */
-apiRouter.post("/summarize", async (req: Request, res: Response): Promise<void> => {
+apiRouter.post("/summarize", requireAuth, async (req: Request, res: Response): Promise<void> => {
   try {
     const { base64, name } = req.body;
 
@@ -112,7 +113,7 @@ apiRouter.post("/summarize", async (req: Request, res: Response): Promise<void> 
 /**
  * POST /api/compare - Compare multiple research papers
  */
-apiRouter.post("/compare", async (req: Request, res: Response): Promise<void> => {
+apiRouter.post("/compare", requireAuth, async (req: Request, res: Response): Promise<void> => {
   try {
     const { papers } = req.body;
 
