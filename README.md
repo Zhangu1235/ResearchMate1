@@ -91,6 +91,17 @@ npm run build
 
 ---
 
+## 🌐 Deployment
+
+ResearchMate is configured for split-client-server production hosting:
+
+* **Frontend Client (Vercel)**:
+  * The interactive React SPA frontend is deployed on **Vercel** for high-availability page load speeds and automatic client-side route fallbacks.
+* **Backend API Server (Render)**:
+  * The Node/Express server is hosted on **Render** to run backend processing, manage local PDF files, run Gemini AI queries, and dispatch Nodemailer SMTP emails securely.
+
+---
+
 ## 🗄️ Supabase Database Schema
 
 To support the search memory recording capability, create a table in your Supabase SQL editor with the following definition:
