@@ -447,12 +447,15 @@ apiRouter.post("/feedback", async (req: Request, res: Response): Promise<void> =
         // Send real email via Gmail SMTP
         const nodemailer = await import("nodemailer");
         const transporter = nodemailer.createTransport({
-          service: "gmail",
+          host: "smtp.gmail.com",
+          port: 465,
+          secure: true,
           auth: {
             user: smtpUser,
             pass: smtpPass,
           },
-        });
+          family: 4,
+        } as any);
 
         const mailOptions = {
           from: `"${name}" <${email}>`,
