@@ -443,37 +443,42 @@ apiRouter.post("/feedback", async (req: Request, res: Response): Promise<void> =
     const smtpPass = process.env.SMTP_PASS || "";
 
     if (smtpUser && smtpPass) {
-      // Send real email via Gmail SMTP
-      const nodemailer = await import("nodemailer");
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: smtpUser,
-          pass: smtpPass,
-        },
-      });
+      try {
+        // Send real email via Gmail SMTP
+        const nodemailer = await import("nodemailer");
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: smtpUser,
+            pass: smtpPass,
+          },
+        });
 
-      const mailOptions = {
-        from: `"${name}" <${email}>`,
-        to: "kezhanguukruse@gmail.com",
-        subject: `[ResearchMate Upgrade/Feedback] - ${type}`,
-        html: `
-          <div style="font-family: Arial, sans-serif; padding: 20px; color: #333; line-height: 1.6;">
-            <h2 style="color: #6366f1; border-bottom: 1px solid #eee; padding-bottom: 10px;">ResearchMate Upgrade & Feedback</h2>
-            <p><strong>From:</strong> ${name} (&lt;${email}&gt;)</p>
-            <p><strong>Category:</strong> ${type}</p>
-            <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee; margin-top: 15px;">
-              <p style="margin: 0; white-space: pre-wrap;">${message}</p>
+        const mailOptions = {
+          from: `"${name}" <${email}>`,
+          to: "kezhanguukruse@gmail.com",
+          subject: `[ResearchMate Upgrade/Feedback] - ${type}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; padding: 20px; color: #333; line-height: 1.6;">
+              <h2 style="color: #6366f1; border-bottom: 1px solid #eee; padding-bottom: 10px;">ResearchMate Upgrade & Feedback</h2>
+              <p><strong>From:</strong> ${name} (&lt;${email}&gt;)</p>
+              <p><strong>Category:</strong> ${type}</p>
+              <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee; margin-top: 15px;">
+                <p style="margin: 0; white-space: pre-wrap;">${message}</p>
+              </div>
+              <p style="font-size: 11px; color: #999; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px;">
+                Submitted at: ${new Date().toLocaleString()}
+              </p>
             </div>
-            <p style="font-size: 11px; color: #999; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px;">
-              Submitted at: ${new Date().toLocaleString()}
-            </p>
-          </div>
-        `,
-      };
+          `,
+        };
 
-      await transporter.sendMail(mailOptions);
-      console.log(`✉️ [EMAIL NOTIFICATION] Real email dispatched successfully to kezhanguukruse@gmail.com via nodemailer.`);
+        await transporter.sendMail(mailOptions);
+        console.log(`✉️ [EMAIL NOTIFICATION] Real email dispatched successfully to kezhanguukruse@gmail.com via nodemailer.`);
+      } catch (emailError: any) {
+        console.error("⚠️ [EMAIL NOTIFICATION] Failed to dispatch email notification via SMTP:", emailError.message || emailError);
+        console.log("Fallback: Feedback has been successfully saved to local disk, but email transmission failed (possibly blocked SMTP outbound ports on the host).");
+      }
     } else {
       // Log mock warning
       console.log("====================================================");
