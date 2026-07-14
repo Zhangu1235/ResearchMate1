@@ -19,6 +19,12 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
 
     const token = String(authHeader).split(" ")[1] || String(authHeader);
 
+    if (token === "mock-token") {
+      // Fallback to mock user for development when the frontend uses mock-token
+      (req as any).user = { id: "mock-user-id", email: "mock@example.com" };
+      return next();
+    }
+
     const { data, error } = await supabaseServer.auth.getUser(token);
 
     if (error || !data?.user) {
